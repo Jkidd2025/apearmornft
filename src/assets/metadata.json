@@ -1,13 +1,22 @@
 {
-  "name": "My First NFT",
-  "symbol": "MFN",
-  "description": "This is my first NFT on Solana",
+  "name": "ApeArmor original logo",
+  "symbol": "APE-Silver",
+  "description": "ApeArmor original logo with beige background with green shield brown and white ape wearing body armor and facing to the right",
   "seller_fee_basis_points": 500,
-  "image": "https://arweave.net/YOUR_IMAGE_ID",
+  "image": "https://arweave.net/vX8MZCFXxxX-830uCkTl6sB_KgMYEE6bBq9MMkXyKIc",
+  "external_url": "",
   "attributes": [
     {
       "trait_type": "Background",
-      "value": "Blue"
+      "value": "Beige"
+    },
+    {
+      "trait_type": "Armor",
+      "value": "Green Shield"
+    },
+    {
+      "trait_type": "Ape",
+      "value": "Brown and White"
     },
     {
       "trait_type": "Rarity",
@@ -17,16 +26,16 @@
   "properties": {
     "files": [
       {
-        "uri": "https://arweave.net/YOUR_IMAGE_ID",
+        "uri": "https://arweave.net/vX8MZCFXxxX-830uCkTl6sB_KgMYEE6bBq9MMkXyKIc",
         "type": "image/png"
       }
     ],
     "category": "image",
     "creators": [
       {
-        "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuKZKAqqGQLVtDuBe",
+        "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuGnkZKAqqGQLVtDuBe",
         "share": 100
       }
     ]
   }
-} 
+}

@@ -1,55 +1,36 @@
 # NFT Assets
 
-This directory contains the assets for your Solana NFT.
+This directory contains the assets needed for your NFT.
 
 ## Required Files
 
-1. `nft-image.png` - Your NFT image (recommended size: 1000x1000 pixels)
-2. `metadata.json` - The metadata for your NFT
+1. `nft-image.png` - Your NFT image
+   - Format: PNG
+   - Recommended size: 1000x1000 pixels
+   - Maximum file size: 10MB
 
 ## Image Requirements
 
 - Format: PNG
-- Size: Recommended 1000x1000 pixels
-- File size: Keep under 10MB for optimal performance
+- Recommended size: 1000x1000 pixels
+- Maximum file size: 10MB
+- Should be high quality and visually appealing
+- Should represent your NFT's theme (ApeArmor original logo)
 
-## Metadata Format
+## Metadata
 
-The metadata.json file should follow the Metaplex NFT Standard:
+The `metadata.json` file contains the NFT's metadata following the Metaplex NFT Standard. It includes:
 
-```json
-{
-  "name": "My First NFT",
-  "symbol": "MFN",
-  "description": "This is my first NFT on Solana",
-  "seller_fee_basis_points": 500,
-  "image": "https://arweave.net/YOUR_IMAGE_ID",
-  "attributes": [
-    {
-      "trait_type": "Background",
-      "value": "Blue"
-    },
-    {
-      "trait_type": "Rarity",
-      "value": "Rare"
-    }
-  ],
-  "properties": {
-    "files": [
-      {
-        "uri": "https://arweave.net/YOUR_IMAGE_ID",
-        "type": "image/png"
-      }
-    ],
-    "category": "image",
-    "creators": [
-      {
-        "address": "YOUR_WALLET_ADDRESS",
-        "share": 100
-      }
-    ]
-  }
-}
-```
+- Name: ApeArmor original logo
+- Symbol: APE-Silver
+- Description: ApeArmor original logo with beige background with green sheild brown and white ape wearing body armor and facing to the right
+- Seller fee: 500 basis points (5%)
+- Attributes: Background, Armor, Ape, and Rarity traits
+- Properties: File information and creator details
 
-Replace `YOUR_IMAGE_ID` with the actual Arweave ID after uploading your image, and `YOUR_WALLET_ADDRESS` with your Solana wallet address.
+## Next Steps
+
+1. Add your NFT image as `nft-image.png` in this directory
+2. Run `npm run upload-assets` to upload the image and metadata to Arweave
+3. The script will automatically update the `.env` file with the new URIs
+4. After successful upload, you can mint your NFT using `npm run dev`

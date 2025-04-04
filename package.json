@@ -9,7 +9,9 @@
     "dev": "ts-node src/mint-nft.ts",
     "generate-keypair": "ts-node src/generate-keypair.ts",
     "upload-assets": "ts-node src/upload-assets.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-connection": "ts-node src/check-connection.ts",
+    "check-balance": "ts-node src/check-balance.ts"
   },
   "keywords": [
     "solana",
