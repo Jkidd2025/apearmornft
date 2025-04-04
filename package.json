@@ -1,0 +1,30 @@
+{
+  "name": "solana-nft-project",
+  "version": "1.0.0",
+  "description": "Solana NFT Minting Project",
+  "main": "dist/mint-nft.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/mint-nft.js",
+    "dev": "ts-node src/mint-nft.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "solana",
+    "nft",
+    "blockchain"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@metaplex-foundation/js": "^0.20.1",
+    "@project-serum/anchor": "^0.26.0",
+    "@solana/spl-token": "^0.3.9",
+    "@solana/web3.js": "^1.87.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
