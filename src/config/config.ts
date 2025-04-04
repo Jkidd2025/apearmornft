@@ -1,11 +1,23 @@
 import { clusterApiUrl } from '@solana/web3.js';
 
 export const config = {
-    // Use 'devnet' for development, 'mainnet-beta' for production
-    network: 'devnet',
-    endpoint: clusterApiUrl('devnet'),
-    // Add your wallet private key here (NEVER commit this to version control)
+    // Network configuration
+    network: process.env.NETWORK || 'mainnet-beta',
+    endpoint: process.env.CUSTOM_RPC_ENDPOINT || clusterApiUrl('mainnet-beta'),
+    
+    // Wallet configuration
     walletPrivateKey: process.env.WALLET_PRIVATE_KEY || '',
-    // Add your RPC endpoint here (optional, will use public endpoint if not provided)
-    rpcEndpoint: process.env.RPC_ENDPOINT || '',
+    
+    // NFT configuration
+    nftConfig: {
+        name: process.env.NFT_NAME || 'My First NFT',
+        symbol: process.env.NFT_SYMBOL || 'MFN',
+        description: process.env.NFT_DESCRIPTION || 'This is my first NFT on Solana',
+        sellerFeeBasisPoints: parseInt(process.env.SELLER_FEE_BASIS_POINTS || '500'),
+        imageUrl: process.env.NFT_IMAGE_URL || '',
+        metadataUrl: process.env.NFT_METADATA_URL || '',
+    },
+    
+    // Optional custom RPC endpoint
+    customRpcEndpoint: process.env.CUSTOM_RPC_ENDPOINT || '',
 }; 
