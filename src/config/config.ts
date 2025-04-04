@@ -3,7 +3,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 export const config = {
     // Network configuration
     network: process.env.NETWORK || 'mainnet-beta',
-    endpoint: process.env.CUSTOM_RPC_ENDPOINT || clusterApiUrl('mainnet-beta'),
+    endpoint: process.env.RPC_ENDPOINT || clusterApiUrl('mainnet-beta'),
     
     // Wallet configuration
     walletPrivateKey: process.env.WALLET_PRIVATE_KEY || '',
