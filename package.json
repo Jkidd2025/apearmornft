@@ -7,6 +7,7 @@
     "build": "tsc",
     "start": "node dist/mint-nft.js",
     "dev": "ts-node src/mint-nft.ts",
+    "generate-keypair": "ts-node src/generate-keypair.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
