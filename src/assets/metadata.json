@@ -1,0 +1,32 @@
+{
+  "name": "My First NFT",
+  "symbol": "MFN",
+  "description": "This is my first NFT on Solana",
+  "seller_fee_basis_points": 500,
+  "image": "https://arweave.net/YOUR_IMAGE_ID",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://arweave.net/YOUR_IMAGE_ID",
+        "type": "image/png"
+      }
+    ],
+    "category": "image",
+    "creators": [
+      {
+        "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuKZKAqqGQLVtDuBe",
+        "share": 100
+      }
+    ]
+  }
+} 

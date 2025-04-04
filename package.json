@@ -8,6 +8,7 @@
     "start": "node dist/mint-nft.js",
     "dev": "ts-node src/mint-nft.ts",
     "generate-keypair": "ts-node src/generate-keypair.ts",
+    "upload-assets": "ts-node src/upload-assets.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
