@@ -2,6 +2,7 @@ import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { Metaplex } from '@metaplex-foundation/js';
 import { config } from './config/config';
 import * as dotenv from 'dotenv';
+import bs58 from 'bs58';
 
 // Load environment variables
 dotenv.config();
@@ -16,10 +17,9 @@ async function mintNFT() {
         // Initialize Metaplex
         const metaplex = new Metaplex(connection);
         
-        // Load wallet
-        const wallet = Keypair.fromSecretKey(
-            Buffer.from(JSON.parse(config.walletPrivateKey))
-        );
+        // Load wallet from Base58 private key
+        const privateKeyBytes = bs58.decode(config.walletPrivateKey);
+        const wallet = Keypair.fromSecretKey(privateKeyBytes);
         
         // Set the identity for the Metaplex instance
         // @ts-ignore - Ignoring type error for Metaplex identity

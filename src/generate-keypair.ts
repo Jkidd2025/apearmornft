@@ -2,6 +2,7 @@ import { Keypair } from '@solana/web3.js';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
+import bs58 from 'bs58';
 
 // Load environment variables
 dotenv.config();
@@ -12,8 +13,8 @@ const keypair = Keypair.generate();
 // Get the public key
 const publicKey = keypair.publicKey.toString();
 
-// Get the private key as a base58 string
-const privateKey = Buffer.from(keypair.secretKey).toString('base64');
+// Get the private key as a base58 string (Solana standard format)
+const privateKey = bs58.encode(keypair.secretKey);
 
 // Create a directory for keys if it doesn't exist
 const keysDir = path.join(__dirname, '..', 'keys');
@@ -46,6 +47,7 @@ fs.writeFileSync(envPath, envContent);
 
 console.log('Keypair generated successfully!');
 console.log('Public Key:', publicKey);
+console.log('Private Key (Base58):', privateKey);
 console.log('Private Key saved to .env file');
 console.log('Keypair saved to:', keypairPath);
 console.log('\nIMPORTANT: Keep your private key secure and never share it with anyone!'); 
