@@ -1,5 +1,11 @@
 import { Connection, Keypair } from '@solana/web3.js';
-import { bundlrStorage, keypairIdentity, Metaplex, toMetaplexFile } from '@metaplex-foundation/js';
+import { 
+    Metaplex, 
+    keypairIdentity, 
+    MetaplexFile,
+    StorageDriver,
+    toMetaplexFile
+} from '@metaplex-foundation/js';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
@@ -7,6 +13,18 @@ import bs58 from 'bs58';
 
 // Load environment variables
 dotenv.config();
+
+async function uploadImage(metaplex: Metaplex, imagePath: string, imageName: string): Promise<string> {
+    console.log(`Uploading ${imageName}...`);
+    const imageBuffer = fs.readFileSync(imagePath);
+    console.log(`${imageName} size: ${(imageBuffer.length / 1024 / 1024).toFixed(2)} MB`);
+    
+    const file = toMetaplexFile(imageBuffer, imageName);
+    const imageUri = await metaplex.storage().upload(file);
+    console.log(`${imageName} uploaded successfully!`);
+    console.log('Image URI:', imageUri);
+    return imageUri;
+}
 
 async function uploadAssets() {
     try {
@@ -24,14 +42,12 @@ async function uploadAssets() {
         const privateKeyBytes = bs58.decode(process.env.WALLET_PRIVATE_KEY || '');
         const wallet = Keypair.fromSecretKey(privateKeyBytes);
         
-        // Initialize Metaplex with the wallet and Bundlr storage
+        // Initialize Metaplex with the wallet
         const metaplex = Metaplex.make(connection)
-            .use(keypairIdentity(wallet))
-            .use(bundlrStorage({
-                address: 'https://node1.bundlr.network',
-                providerUrl: rpcEndpoint,
-                timeout: 60000,
-            }));
+            .use(keypairIdentity(wallet));
+        
+        // Configure storage
+        const storage = metaplex.storage().driver() as StorageDriver;
         
         console.log('Wallet address:', wallet.publicKey.toString());
         
@@ -39,81 +55,47 @@ async function uploadAssets() {
         const balance = await connection.getBalance(wallet.publicKey);
         console.log(`Current balance: ${balance / 1e9} SOL`);
         
-        // We need at least 0.1 SOL for Arweave storage fees
-        if (balance < 0.1 * 1e9) {
-            throw new Error(`Insufficient balance. Please fund your wallet with at least 0.1 SOL for storage fees. Current balance: ${balance / 1e9} SOL`);
+        // We need at least 0.5 SOL for Arweave storage fees (multiple images)
+        if (balance < 0.5 * 1e9) {
+            throw new Error(`Insufficient balance. Please fund your wallet with at least 0.5 SOL for storage fees. Current balance: ${balance / 1e9} SOL`);
         }
         
         console.log('Uploading NFT assets to Arweave...');
         
-        // Read the image file
-        const imagePath = path.join(__dirname, 'assets', 'nft-image.png');
+        const collectionDir = path.join(__dirname, 'assets', 'collection');
+        const nftsData = JSON.parse(fs.readFileSync(path.join(collectionDir, 'nfts.json'), 'utf8'));
         
-        // Check if image exists
-        if (!fs.existsSync(imagePath)) {
-            throw new Error(`Image file not found at ${imagePath}. Please add your NFT image as 'nft-image.png' in the src/assets directory.`);
+        // Upload collection image first
+        const collectionImageUri = await uploadImage(
+            metaplex,
+            path.join(collectionDir, 'collection.png'),
+            'collection.png'
+        );
+        
+        // Upload individual NFT images and update metadata
+        for (const nft of nftsData) {
+            const imageUri = await uploadImage(
+                metaplex,
+                path.join(collectionDir, nft.imageName),
+                nft.imageName
+            );
+            
+            // Update the NFT's metadata with Arweave URLs
+            nft.image = imageUri;
+            nft.properties.files[0].uri = imageUri;
+            nft.collection.image = collectionImageUri;
         }
         
-        const imageBuffer = fs.readFileSync(imagePath);
-        console.log(`Image size: ${(imageBuffer.length / 1024 / 1024).toFixed(2)} MB`);
-        
-        // Convert buffer to MetaplexFile
-        const file = toMetaplexFile(imageBuffer, 'nft-image.png');
-        
-        // First, upload the image to Arweave
-        console.log('Uploading image to Arweave (this may take several minutes)...');
-        console.log('Please be patient as Arweave uploads can take 5-10 minutes depending on file size and network conditions.');
-        
-        // Upload the image
-        const imageUri = await metaplex.storage().upload(file);
-        console.log('Image uploaded successfully!');
-        console.log('Image URI:', imageUri);
-        
-        // Read and update the metadata JSON
-        const metadataPath = path.join(__dirname, 'assets', 'metadata.json');
-        let metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'));
-        
-        // Update the metadata with the new image URI
-        metadata.image = imageUri;
-        metadata.properties.files[0].uri = imageUri;
-        metadata.properties.creators[0].address = wallet.publicKey.toString();
-        
-        // Write the updated metadata back to the file
-        fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-        
-        // Convert the metadata to a MetaplexFile
-        const metadataFile = toMetaplexFile(
-            Buffer.from(JSON.stringify(metadata)),
-            'metadata.json'
+        // Save the updated metadata
+        fs.writeFileSync(
+            path.join(collectionDir, 'nfts.json'),
+            JSON.stringify(nftsData, null, 2)
         );
         
-        // Upload the metadata to Arweave
-        console.log('Uploading metadata to Arweave...');
-        const metadataUri = await metaplex.storage().upload(metadataFile);
-        
-        console.log('Metadata uploaded successfully!');
-        console.log('Metadata URI:', metadataUri);
-        
-        // Update the .env file with the image and metadata URIs
-        const envPath = path.join(__dirname, '..', '.env');
-        let envContent = fs.readFileSync(envPath, 'utf8');
-        
-        // Replace the NFT_IMAGE_URL line
-        envContent = envContent.replace(
-            /NFT_IMAGE_URL=.*/,
-            `NFT_IMAGE_URL="${imageUri}"`
-        );
-        
-        // Replace the NFT_METADATA_URL line
-        envContent = envContent.replace(
-            /NFT_METADATA_URL=.*/,
-            `NFT_METADATA_URL="${metadataUri}"`
-        );
-        
-        fs.writeFileSync(envPath, envContent);
-        
-        console.log('.env file updated with the new URIs');
-        console.log('\nYou can now mint your NFT using: npm run dev');
+        console.log('\nAll assets uploaded successfully!');
+        console.log('Collection image:', collectionImageUri);
+        console.log('\nMetadata has been updated with Arweave URLs');
+        console.log('You can now proceed with minting your NFTs');
         
     } catch (error) {
         console.error('Error uploading assets:', error);
@@ -122,7 +104,7 @@ async function uploadAssets() {
             
             if (error.message.includes('Insufficient balance')) {
                 console.log('\nTo proceed:');
-                console.log('1. Send at least 0.1 SOL to your wallet address shown above');
+                console.log('1. Send at least 0.5 SOL to your wallet address shown above');
                 console.log('2. Wait for the transaction to confirm');
                 console.log('3. Run this script again');
             }

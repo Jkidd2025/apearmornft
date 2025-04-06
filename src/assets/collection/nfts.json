@@ -1,0 +1,182 @@
+[
+  {
+    "name": "ApeArmor Chimp",
+    "symbol": "Chimp",
+    "description": "ApeArmor Chimp - First generation of ApeArmor NFTs. Grants DAO access and project review capabilities with limited governance rights. Part of an exclusive collection of 1,000,000 NFTs.",
+    "image": "https://arweave.net/0-vvtFiOdGwEngN1fFGUZVfdwub4ZcCGhd4OovCuam4",
+    "imageName": "ApeArmorChimp_NFT.png",
+    "external_url": "https://apearmorsecure.com/#nft-collection",
+    "seller_fee_basis_points": 500,
+    "attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Beige"
+      },
+      {
+        "trait_type": "Armor",
+        "value": "Full Body Armor"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Chimp"
+      },
+      {
+        "trait_type": "Tier",
+        "value": "Basic"
+      },
+      {
+        "trait_type": "Supply",
+        "value": "1000000"
+      },
+      {
+        "trait_type": "Access Level",
+        "value": "Basic"
+      },
+      {
+        "trait_type": "Governance Rights",
+        "value": "Limited"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "https://arweave.net/0-vvtFiOdGwEngN1fFGUZVfdwub4ZcCGhd4OovCuam4",
+          "type": "image/png"
+        }
+      ],
+      "category": "image",
+      "creators": [
+        {
+          "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuGnkZKAqqGQLVtDuBe",
+          "share": 100
+        }
+      ]
+    },
+    "collection": {
+      "name": "ApeArmor NFT DAO Collection",
+      "family": "ApeArmor DAO",
+      "image": "https://arweave.net/cjlRS3GTuDVG8Q5aa_LQgtq5E_zDwFUbQaL2I67lScA"
+    },
+    "uri": "https://arweave.net/wi0hADKj5vsgu0-Voc0Kxi1DbM_4nVqCm_ms-XEBT90"
+  },
+  {
+    "name": "Guardian Gorilla",
+    "symbol": "Gorilla",
+    "description": "ApeArmor Guardian Gorilla - Exclusive protector NFTs with enhanced access. Grants DAO access, project review capabilities, proposal submission, and voting rights. Limited to 10,000 NFTs.",
+    "image": "https://arweave.net/dNkgU3QISkHhL7_EQB0STXRLS2rJzAXMg1yMiu1MMvw",
+    "imageName": "GuardianGorilla_NFT.png",
+    "external_url": "https://apearmorsecure.com/#nft-collection",
+    "seller_fee_basis_points": 500,
+    "attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Beige"
+      },
+      {
+        "trait_type": "Armor",
+        "value": "Enhanced Full Body"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Gorilla"
+      },
+      {
+        "trait_type": "Tier",
+        "value": "Advanced"
+      },
+      {
+        "trait_type": "Supply",
+        "value": "10000"
+      },
+      {
+        "trait_type": "Access Level",
+        "value": "Enhanced"
+      },
+      {
+        "trait_type": "Governance Rights",
+        "value": "Standard"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "https://arweave.net/dNkgU3QISkHhL7_EQB0STXRLS2rJzAXMg1yMiu1MMvw",
+          "type": "image/png"
+        }
+      ],
+      "category": "image",
+      "creators": [
+        {
+          "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuGnkZKAqqGQLVtDuBe",
+          "share": 100
+        }
+      ]
+    },
+    "collection": {
+      "name": "ApeArmor NFT DAO Collection",
+      "family": "ApeArmor DAO",
+      "image": "https://arweave.net/cjlRS3GTuDVG8Q5aa_LQgtq5E_zDwFUbQaL2I67lScA"
+    },
+    "uri": "https://arweave.net/4PfCjSMhx5pbkNjXileTXyUBU3-ow3sI61ay7o7mOSg"
+  },
+  {
+    "name": "Sentinel Silverback",
+    "symbol": "Silverback",
+    "description": "ApeArmor Sentinel Silverback - Legendary tier NFTs with the highest level of exclusive perks. Grants DAO access, project review capabilities, proposal submission, voting rights, and a council seat. Ultra-rare with only 1,001 NFTs.",
+    "image": "https://arweave.net/0gKIy57k5Mye1kmUG33SE8Nfv_Udtz05Pq7khMTph_E",
+    "imageName": "SentinelSilverback_NFT.png",
+    "external_url": "https://apearmorsecure.com/#nft-collection",
+    "seller_fee_basis_points": 500,
+    "attributes": [
+      {
+        "trait_type": "Background",
+        "value": "Beige"
+      },
+      {
+        "trait_type": "Armor",
+        "value": "Legendary Full Body"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Silverback"
+      },
+      {
+        "trait_type": "Tier",
+        "value": "Legendary"
+      },
+      {
+        "trait_type": "Supply",
+        "value": "1001"
+      },
+      {
+        "trait_type": "Access Level",
+        "value": "Elite"
+      },
+      {
+        "trait_type": "Governance Rights",
+        "value": "Full"
+      }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "https://arweave.net/0gKIy57k5Mye1kmUG33SE8Nfv_Udtz05Pq7khMTph_E",
+          "type": "image/png"
+        }
+      ],
+      "category": "image",
+      "creators": [
+        {
+          "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuGnkZKAqqGQLVtDuBe",
+          "share": 100
+        }
+      ]
+    },
+    "collection": {
+      "name": "ApeArmor NFT DAO Collection",
+      "family": "ApeArmor DAO",
+      "image": "https://arweave.net/cjlRS3GTuDVG8Q5aa_LQgtq5E_zDwFUbQaL2I67lScA"
+    },
+    "uri": "https://arweave.net/m8dgj-5cMKmz0f_PFktPyiN6RJl25UG96bK1fkuNXYg"
+  }
+]

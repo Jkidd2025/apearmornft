@@ -4,6 +4,7 @@
   "description": "ApeArmor original logo with beige background with green shield brown and white ape wearing body armor and facing to the right",
   "seller_fee_basis_points": 500,
   "image": "https://arweave.net/vX8MZCFXxxX-830uCkTl6sB_KgMYEE6bBq9MMkXyKIc",
+  "animation_url": "",
   "external_url": "",
   "attributes": [
     {
@@ -27,15 +28,21 @@
     "files": [
       {
         "uri": "https://arweave.net/vX8MZCFXxxX-830uCkTl6sB_KgMYEE6bBq9MMkXyKIc",
-        "type": "image/png"
+        "type": "image/png",
+        "cdn": false
       }
     ],
     "category": "image",
     "creators": [
       {
         "address": "CoF2dkhR2UwdfreLjxvgg8mdEPuGnkZKAqqGQLVtDuBe",
-        "share": 100
+        "share": 100,
+        "verified": true
       }
     ]
+  },
+  "collection": {
+    "name": "ApeArmor Collection",
+    "family": "ApeArmor"
   }
 }
